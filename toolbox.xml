@@ -1,0 +1,177 @@
+<category name="%{BKY_CATSENSORKIT}" colour='#58ce6a'>
+  <block type="sensorkit_active_buzzer_set_value">
+    <value name="pin">
+    </value>
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_passive_buzzer_set_value">
+    <value name="pin">
+    </value>
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_rgb_set_value">
+    <value name="color">
+      <shadow type="colour_picker">
+        <field name="COLOUR">#ff0000</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_dual_color_led_set_value">
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_autoflash_set_value">
+    <value name="pin">
+    </value>
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_relay_set_value">
+    <value name="SIG">
+    </value>
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_laser_set_value">
+    <value name="SIG">
+    </value>
+    <value name="value">
+      <shadow type="sensorkit_pin_switch">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="sensorkit_button_get_value">
+  </block>
+
+  <block type="sensorkit_potentiometer_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_sound_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_ultrasonic_get_value">
+    <value name="Trig">
+    </value>
+    <value name="Echo">
+    </value>
+  </block>
+
+  <block type="sensorkit_tiltswitch_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_reedswitch_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_photointerrupter_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_raindetection_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_temperature_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_photoresistor_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_flame_get_value">
+    <value name="pin_DO">
+    </value>
+    <value name="pin_AO">
+    </value>
+  </block>
+
+  <block type="sensorkit_gassensor_get_value">
+    <value name="pin_DO">
+    </value>
+    <value name="pin_AO">
+    </value>
+  </block>
+
+  <block type="sensorkit_touchswitch_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_ds18b20_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_tracking_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_analoghallswitch_get_value">
+    <value name="pin_DO">
+    </value>
+    <value name="pin_AO">
+    </value>
+  </block>
+
+  <block type="sensorkit_hallswitch_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_analogtemperature_get_value">
+    <value name="pin_DO">
+    </value>
+    <value name="pin_AO">
+    </value>
+  </block>
+
+  <block type="sensorkit_thermistor_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+  <block type="sensorkit_dht11_get_value">
+    <value name="pin">
+    </value>
+  </block>
+
+
+</category>
+
