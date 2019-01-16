@@ -209,8 +209,11 @@ Blockly.Blocks.sensorkit_set_value = function(_type, module) {
 Blockly.Blocks.sensorkit_get_value = function(_type, module) {
     return {
         init: function init() {
-            this.appendValueInput("SIG").setCheck(_type + '_Pin').appendField(Blockly.Msg['SENSORKIT_' + module + '_GET_VALUE_TITLE1']);
-            this.appendDummyInput().appendField(Blockly.Msg['SENSORKIT_' + module + '_GET_VALUE_TITLE2']);
+            this.appendValueInput("SIG")
+                .setCheck(_type + '_Pin')
+                .appendField(Blockly.Msg['SENSORKIT_' + module + '_GET_VALUE_TITLE1']);
+            this.appendDummyInput()
+                .appendField(Blockly.Msg['SENSORKIT_' + module + '_GET_VALUE_TITLE2']);
             this.setInputsInline(true);
             this.setOutput(true, null);
             this.setColour(Blockly.Constants.SensorKit.RGB);
