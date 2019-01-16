@@ -4,34 +4,45 @@ var SensorKit = {
     'name': 'Sensor Kit',
     'id': 'sensorkit',
     'modules': {
-        "dual-color-led": {
+        "led-module": {
             'id': 0,
-            'name': 'Dual Color LED',
-            'blocks': ['<block type = "sensorkit_dual_color_led_set_value"><value name="value"><shadow type="sensorkit_pin_switch"></shadow></value></block >'],
-            'img': 'dual-color-led.png',
+            'name': 'LED Module',
+            'blocks': [
+                '<block type="sensorkit_led_module_set_value"> ' +
+                '  <value name="SIG"> ' +
+                '    <shadow type="sensorkit_digital_pin"> ' +
+                '    </shadow> ' +
+                '  </value> ' +
+                '  <value name="value"> ' +
+                '    <shadow type="sensorkit_pin_switch"> ' +
+                '    </shadow> ' +
+                '  </value> ' +
+                '</block> '
+            ],
+            'img': 'led-module.png',
             'simulator': {
                 "type": "digitalOutput",
                 "onHigh": "dual-color-led_on.png",
                 "onLow": "dual-color-led_off.png"
             },
             'pins': {
-                "R": {
+                "SIG": {
                     'id': 0,
-                    'name': 'R',
+                    'name': 'SIG',
                     'x': 0.3,
                     'y': 1,
                     'isSource': true,
                     'property': ['din'],
                     'type': 'digital',
                 },
-                "G": {
+                "VCC": {
                     'id': 1,
-                    'name': 'G',
+                    'name': 'VCC',
                     'x': 0.7,
                     'y': 1,
                     'isSource': true,
-                    'property': ['din'],
-                    'type': 'digital',
+                    'property': ['5V'],
+                    'type': 'power',
                 },
                 "GND": {
                     'id': 2,
@@ -47,14 +58,27 @@ var SensorKit = {
         "rgb-led": {
             'id': 1,
             'name': 'RGB LED',
-            'blocks': ['<block type="sensorkit_rgb_set_value">' +
-                '<value name="color">' +
-                '<shadow type="colour_picker">' +
-                '<field name="COLOUR">#ff0000</field>' +
-                '</shadow>' +
-                '</value>' +
-                '</block>',],
-            'img': 'dual-color-led.png',
+            'blocks': ['<block type="sensorkit_rgb_set_value"> ' +
+                '<value name="R"> ' +
+                '<shadow type="sensorkit_pwm_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="G"> ' +
+                '<shadow type="sensorkit_pwm_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="B"> ' +
+                '<shadow type="sensorkit_pwm_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="color"> ' +
+                '<shadow type="colour_picker"> ' +
+                '   <field name="COLOUR">#ff0000</field> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block>'
+            ],
+            'img': 'rgb-led.png',
             "simulator": {
                 "type": "Communicate",
                 "R": 'R',
@@ -206,8 +230,13 @@ var SensorKit = {
         "button": {
             'id': 5,
             'name': 'Button',
-            'blocks': ['<block type="sensorkit_button_get_value">' +
-                '</block>',],
+            'blocks': ['<block type="sensorkit_button_get_value"> ' +
+                '<value name="SIG"> ' +
+                '    <shadow type="sensorkit_digital_pin"> ' +
+                '    </shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'button.png',
             'simulator': {
                 "type": "digitalInput",
@@ -249,10 +278,13 @@ var SensorKit = {
         "tilt-switch": {
             'id': 6,
             'name': 'Tilt Switch',
-            'blocks': ['<block type="sensorkit_tiltswitch_get_value">' +
-                '<value name="pin">' +
-                '</value>' +
-                '</block>',],
+            'blocks': ['<block type="sensorkit_tiltswitch_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'tilt-switch.png',
             'simulator': {
                 "type": "digitalInput",
@@ -291,36 +323,43 @@ var SensorKit = {
                 }
             }
         },
-        // "vibration-switch": {
-        //     'id': 7,
-        //     'name': 'Vibration Switch',
-        //     'img': 'vibration-switch.png',
-        //     'pins': [{
-        //         'id': 0,
-        //         'name': 'VCC',
-        //         'x': 0.3,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['3V3'],
-        //         'type': 'power'
-        //     }, {
-        //         'id': 1,
-        //         'name': 'SIG',
-        //         'x': 0.5,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['din'],
-        //         'type': 'digital'
-        //     }, {
-        //         'id': 2,
-        //         'name': 'GND',
-        //         'x': 0.7,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['GND'],
-        //         'type': 'ground'
-        //     }]
-        // },
+        "vibration-switch": {
+            'id': 7,
+            'name': 'Vibration Switch',
+            'blocks': ['<block type="sensorkit_vibrationswitch_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
+            'img': 'vibration-switch.png',
+            'pins': [{
+                'id': 0,
+                'name': 'VCC',
+                'x': 0.3,
+                'y': 1,
+                'isSource': true,
+                'property': ['3V3'],
+                'type': 'power'
+            }, {
+                'id': 1,
+                'name': 'SIG',
+                'x': 0.5,
+                'y': 1,
+                'isSource': true,
+                'property': ['din'],
+                'type': 'digital'
+            }, {
+                'id': 2,
+                'name': 'GND',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }]
+        },
         // "iR-receiver": {
         //     'id': 8,
         //     'name': 'IR Receiver',
@@ -393,11 +432,57 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        // "passive-buzzer": {
-        //     'id': 10,
-        //     'name': 'Passive Buzzer',
-        //     'blocks': ['<block type="sensorkit_passive_buzzer_set_value"><value name="pin"></value><value name="value"><shadow type="sensorkit_pin_switch"><field name="NUM">0</field></shadow></value></block>'],
-        //     'img': 'passive-buzzer.png',
+        "passive-buzzer": {
+            'id': 10,
+            'name': 'Passive Buzzer',
+            'blocks': ['<block type="sensorkit_passive_buzzer_set_value"> ' +
+                '<value name="pin"> ' +
+                '<shadow type="sensorkit_pwm_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="note"> ' +
+                '<shadow type="sensorkit_note"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block>'
+            ],
+            'img': 'passive-buzzer.png',
+            'pins': [{
+                'id': 0,
+                'name': 'VCC',
+                'x': 0.3,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 1,
+                'name': 'SIG',
+                'x': 0.5,
+                'y': 1,
+                'isSource': true,
+                'property': ['pwm'],
+                'type': 'pwm'
+            }, {
+                'id': 2,
+                'name': 'GND',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }]
+        },
+        // "reed-switch": {
+        //     'id': 11,
+        //     'name': 'Reed Switch',
+        //     'blocks': ['<block type="sensorkit_reedswitch_get_value"><value name="pin"></value></block>'],
+        //     'img': 'reed-switch.png',
+        //     'simulator': {
+        //         "type": "digitalInput",
+        //         "pin": 'SIG',
+        //         "mode": 'click'
+        //     },
         //     'pins': [{
         //         'id': 0,
         //         'name': 'VCC',
@@ -424,79 +509,43 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        "reed-switch": {
-            'id': 11,
-            'name': 'Reed Switch',
-            'blocks': ['<block type="sensorkit_reedswitch_get_value"><value name="pin"></value></block>'],
-            'img': 'reed-switch.png',
-            'simulator': {
-                "type": "digitalInput",
-                "pin": 'SIG',
-                "mode": 'click'
-            },
-            'pins': [{
-                'id': 0,
-                'name': 'VCC',
-                'x': 0.3,
-                'y': 1,
-                'isSource': true,
-                'property': ['5V'],
-                'type': 'power'
-            }, {
-                'id': 1,
-                'name': 'SIG',
-                'x': 0.5,
-                'y': 1,
-                'isSource': true,
-                'property': ['din'],
-                'type': 'digital'
-            }, {
-                'id': 2,
-                'name': 'GND',
-                'x': 0.7,
-                'y': 1,
-                'isSource': true,
-                'property': ['GND'],
-                'type': 'ground'
-            }]
-        },
-        "photo-interrupter": {
-            'id': 12,
-            'name': 'Photo Interrupter',
-            'blocks': ['<block type="sensorkit_photointerrupter_get_value"><value name="pin"></value></block>'],
-            'img': 'photo-interrupter.png',
-            'simulator': {
-                "type": "digitalInput",
-                "pin": 'SIG',
-                "mode": 'click',
-                "initValue": 0
-            },
-            'pins': [{
-                'id': 0,
-                'name': 'VCC',
-                'x': 0.3,
-                'y': 1,
-                'isSource': true,
-                'property': ['5V'],
-                'type': 'power'
-            }, {
-                'id': 1,
-                'name': 'SIG',
-                'x': 0.5,
-                'y': 1,
-                'isSource': true,
-                'property': ['din'],
-                'type': 'digital'
-            }, {
-                'id': 2,
-                'name': 'GND',
-                'x': 0.7,
-                'y': 1,
-                'isSource': true,
-                'property': ['GND'],
-                'type': 'ground'
-            }]
-        },
+        // "photo-interrupter": {
+        //     'id': 12,
+        //     'name': 'Photo Interrupter',
+        //     'blocks': ['<block type="sensorkit_photointerrupter_get_value"><value name="pin"></value></block>'],
+        //     'img': 'photo-interrupter.png',
+        //     'simulator': {
+        //         "type": "digitalInput",
+        //         "pin": 'SIG',
+        //         "mode": 'click',
+        //         "initValue": 0
+        //     },
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['5V'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'SIG',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'digital'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'GND',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }]
+        // },
         // "rain-detection-module": {
         //     'id': 13,
         //     'name': 'Rain Detection Module',
@@ -536,69 +585,89 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        // "joystick": {
-        //     'id': 14,
-        //     'name': 'Joystick',
-        //     'blocks': ['<block type="sensorkit_joystick_get_value">'+
-        //             '<value name="pin_X">'+
-        //             '</value>'+
-        //             '<value name="pin_Y">'+
-        //             '</value>'+
-        //             '<value name="pin_BT">'+
-        //             '</value>'+
-        //         '</block>', ],
-        //     'img': 'joystick.png',
-        //     'pins': [{
-        //             'id': 0,
-        //             'name': 'VCC',
-        //             'x': 0.1,
-        //             'y': 1,
-        //             'isSource': true,
-        //             'property': ['3V3'],
-        //             'type': 'power',
-        //         },
-        //         {
-        //             'id': 1,
-        //             'name': 'X-out',
-        //             'x': 0.3,
-        //             'y': 1,
-        //             'isSource': true,
-        //             'property': ['ain'],
-        //             'type': 'analog',
-        //         },
-        //         {
-        //             'id': 2,
-        //             'name': 'Y-out',
-        //             'x': 0.5,
-        //             'y': 1,
-        //             'isSource': true,
-        //             'property': ['ain'],
-        //             'type': 'analog',
-        //         },
-        //         {
-        //             'id': 3,
-        //             'name': 'Bt',
-        //             'x': 0.7,
-        //             'y': 1,
-        //             'isSource': true,
-        //             'property': ['ain'],
-        //             'type': 'analog',
-        //         },
-        //         {
-        //             'id': 4,
-        //             'name': 'GND',
-        //             'x': 0.9,
-        //             'y': 1,
-        //             'isSource': true,
-        //             'property': ['GND'],
-        //             'type': 'ground',
-        //         }
-        //     ]
-        // },
+        "joystick": {
+            'id': 14,
+            'name': 'Joystick',
+            'blocks': ['<block type="sensorkit_joy_stick_get_status"> ' +
+                '<value name="X"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="Y"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="BT"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> ',
+
+                '<block type="sensorkit_joy_stick_get_value"> ' +
+                '<value name="pin"> ' +
+                '    <shadow type="sensorkit_analog_pin"> ' +
+                '    </shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
+            'img': 'joystick.png',
+            'pins': [{
+                    'id': 0,
+                    'name': 'VCC',
+                    'x': 0.1,
+                    'y': 1,
+                    'isSource': true,
+                    'property': ['3V3'],
+                    'type': 'power',
+                },
+                {
+                    'id': 1,
+                    'name': 'X-out',
+                    'x': 0.3,
+                    'y': 1,
+                    'isSource': true,
+                    'property': ['ain'],
+                    'type': 'analog',
+                },
+                {
+                    'id': 2,
+                    'name': 'Y-out',
+                    'x': 0.5,
+                    'y': 1,
+                    'isSource': true,
+                    'property': ['ain'],
+                    'type': 'analog',
+                },
+                {
+                    'id': 3,
+                    'name': 'Bt',
+                    'x': 0.7,
+                    'y': 1,
+                    'isSource': true,
+                    'property': ['ain'],
+                    'type': 'analog',
+                },
+                {
+                    'id': 4,
+                    'name': 'GND',
+                    'x': 0.9,
+                    'y': 1,
+                    'isSource': true,
+                    'property': ['GND'],
+                    'type': 'ground',
+                }
+            ]
+        },
         "potentiometer": {
             'id': 15,
             'name': 'Potentiometer',
-            'blocks': ['<block type="sensorkit_potentiometer_get_value"><value name="pin"></value></block>'],
+            'blocks': ['<block type="sensorkit_potentiometer_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'potentiometer.png',
             'simulator': {
                 "type": "AnalogInput",
@@ -631,43 +700,43 @@ var SensorKit = {
                 'type': 'ground'
             }]
         },
-        "hall-switch": {
-            'id': 16,
-            'name': 'Hall Switch',
-            'blocks': ['<block type="sensorkit_hallswitch_get_value"><value name="pin"></value></block>'],
-            'img': 'hall-switch.png',
-            'simulator': {
-                "type": "digitalInput",
-                "pin": 'SIG',
-                "mode": 'click',
-                "initValue": 0
-            },
-            'pins': [{
-                'id': 0,
-                'name': 'VCC',
-                'x': 0.3,
-                'y': 1,
-                'isSource': true,
-                'property': ['5V'],
-                'type': 'power'
-            }, {
-                'id': 1,
-                'name': 'SIG',
-                'x': 0.5,
-                'y': 1,
-                'isSource': true,
-                'property': ['din'],
-                'type': 'digital'
-            }, {
-                'id': 2,
-                'name': 'GND',
-                'x': 0.7,
-                'y': 1,
-                'isSource': true,
-                'property': ['GND'],
-                'type': 'ground'
-            }]
-        },
+        // "hall-switch": {
+        //     'id': 16,
+        //     'name': 'Hall Switch',
+        //     'blocks': ['<block type="sensorkit_hallswitch_get_value"><value name="pin"></value></block>'],
+        //     'img': 'hall-switch.png',
+        //     'simulator': {
+        //         "type": "digitalInput",
+        //         "pin": 'SIG',
+        //         "mode": 'click',
+        //         "initValue": 0
+        //     },
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['5V'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'SIG',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'digital'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'GND',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }]
+        // },
         // "analog-hall-switch": {
         //     'id': 17,
         //     'name': 'analog Hall Switch',
@@ -707,42 +776,42 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        "thermister": {
-            'id': 18,
-            'name': 'Thermister',
-            'blocks': ['<block type="sensorkit_temperature_get_value"><value name="pin"></value></block>'],
-            'img': 'thermister.png',
-            'simulator': {
-                "type": "AnalogInput",
-                "pin": "SIG",
-                "initValue": 0
-            },
-            'pins': [{
-                'id': 0,
-                'name': 'VCC',
-                'x': 0.3,
-                'y': 1,
-                'isSource': true,
-                'property': ['3V3'],
-                'type': 'power'
-            }, {
-                'id': 1,
-                'name': 'SIG',
-                'x': 0.5,
-                'y': 1,
-                'isSource': true,
-                'property': ['ain'],
-                'type': 'analog'
-            }, {
-                'id': 2,
-                'name': 'GND',
-                'x': 0.7,
-                'y': 1,
-                'isSource': true,
-                'property': ['GND'],
-                'type': 'ground'
-            }]
-        },
+        // "thermister": {
+        //     'id': 18,
+        //     'name': 'Thermister',
+        //     'blocks': ['<block type="sensorkit_temperature_get_value"><value name="pin"></value></block>'],
+        //     'img': 'thermister.png',
+        //     'simulator': {
+        //         "type": "AnalogInput",
+        //         "pin": "SIG",
+        //         "initValue": 0
+        //     },
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['3V3'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'SIG',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['ain'],
+        //         'type': 'analog'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'GND',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }]
+        // },
         // "analog-temperature-sensor": {
         //     'id': 19,
         //     'name': 'analog Temperature Sensor',
@@ -789,7 +858,13 @@ var SensorKit = {
         "sound-sensor": {
             'id': 20,
             'name': 'Sound Sensor',
-            'blocks': ['<block type="sensorkit_sound_get_value"><value name="pin"></value></block>'],
+            'blocks': ['<block type="sensorkit_sound_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'sound-sensor.png',
             'simulator': {
                 "type": "AnalogInput",
@@ -825,7 +900,13 @@ var SensorKit = {
         "photoresistor": {
             'id': 21,
             'name': 'Photoresistor',
-            'blocks': ['<block type="sensorkit_photoresistor_get_value"><value name="pin"></value></block>'],
+            'blocks': ['<block type="sensorkit_photoresistor_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'photoresistor.png',
             'simulator': {
                 "type": "AnalogInput",
@@ -977,7 +1058,13 @@ var SensorKit = {
         "touch-switch": {
             'id': 25,
             'name': 'Touch Switch',
-            'blocks': ['<block type="sensorkit_touchswitch_get_value"><value name="pin"></value></block>'],
+            'blocks': ['<block type="sensorkit_touchswitch_get_value"> ' +
+                '<value name="SIG"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
             'img': 'touch-switch.png',
             'simulator': {
                 "type": "digitalInput",
@@ -1011,76 +1098,92 @@ var SensorKit = {
                 'type': 'ground'
             }]
         },
-        // "ultrasonic-ranging-module": {
-        //     'id': 26,
-        //     'name': 'Ultrasonic Ranging Module',
-        //     'blocks': ['\n                <block type="sensorkit_ultrasonic_get_value">\n                    <value name="Trig">\n                    </value>\n                    <value name="Echo">\n                    </value>\n                </block>'],
-        //     'img': 'ultrasonic-ranging-module.png',
-        //     'pins': [{
-        //         'id': 0,
-        //         'name': 'VCC',
-        //         'x': 0.2,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['5V'],
-        //         'type': 'power'
-        //     }, {
-        //         'id': 1,
-        //         'name': 'Trig',
-        //         'x': 0.4,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['din'],
-        //         'type': 'digital'
-        //     }, {
-        //         'id': 2,
-        //         'name': 'Echo',
-        //         'x': 0.6,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['din'],
-        //         'type': 'digital'
-        //     }, {
-        //         'id': 3,
-        //         'name': 'GND',
-        //         'x': 0.8,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['GND'],
-        //         'type': 'ground'
-        //     }]
-        // },
-        // "DS18B20-temperature-sensor": {
-        //     'id': 27,
-        //     'name': 'DS18B20 Temperature Sensor',
-        //     'blocks': ['\n                <block type="sensorkit_ds18b20_get_value">\n                    <value name="pin">\n                    </value>\n                </block>'],
-        //     'img': 'DS18B20-temperature-sensor.png',
-        //     'pins': [{
-        //         'id': 0,
-        //         'name': 'VCC',
-        //         'x': 0.3,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['5V'],
-        //         'type': 'power'
-        //     }, {
-        //         'id': 1,
-        //         'name': 'SIG',
-        //         'x': 0.5,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['din'],
-        //         'type': 'digital'
-        //     }, {
-        //         'id': 2,
-        //         'name': 'GND',
-        //         'x': 0.7,
-        //         'y': 1,
-        //         'isSource': true,
-        //         'property': ['GND'],
-        //         'type': 'ground'
-        //     }]
-        // },
+        "ultrasonic-ranging-module": {
+            'id': 26,
+            'name': 'Ultrasonic Ranging Module',
+            'blocks': ['<block type="sensorkit_ultrasonic_get_value"> ' +
+                '<value name="Trig"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="Echo"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
+            'img': 'ultrasonic-ranging-module.png',
+            'pins': [{
+                'id': 0,
+                'name': 'VCC',
+                'x': 0.2,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 1,
+                'name': 'Trig',
+                'x': 0.4,
+                'y': 1,
+                'isSource': true,
+                'property': ['din'],
+                'type': 'digital'
+            }, {
+                'id': 2,
+                'name': 'Echo',
+                'x': 0.6,
+                'y': 1,
+                'isSource': true,
+                'property': ['din'],
+                'type': 'digital'
+            }, {
+                'id': 3,
+                'name': 'GND',
+                'x': 0.8,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }]
+        },
+        "DS18B20-temperature-sensor": {
+            'id': 27,
+            'name': 'DS18B20 Temperature Sensor',
+            'blocks': ['<block type="sensorkit_ds18b20_get_value"> ' +
+                '<value name="Trig"> ' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block>'
+            ],
+            'img': 'DS18B20-temperature-sensor.png',
+            'pins': [{
+                'id': 0,
+                'name': 'VCC',
+                'x': 0.3,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 1,
+                'name': 'GND',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }, {
+                'id': 2,
+                'name': 'SIG',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['Dout'],
+                'type': 'digital'
+            }]
+        },
         // "rotary-encoder": {
         //     'id': 28,
         //     'name': 'Rotary Encoder',
@@ -1158,43 +1261,43 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        "ir-obstacle-avoidance": {
-            'id': 30,
-            'name': 'IR Obstacle Avoidance',
-            'blocks': ['<block type="sensorkit_irobstacle_get_value"><value name="pin"></value></block>'],
-            'img': 'ir-obstacle-avoidance.png',
-            'simulator': {
-                "type": "digitalInput",
-                "pin": 'SIG',
-                "mode": 'click',
-                "initValue": 0
-            },
-            'pins': [{
-                'id': 0,
-                'name': 'VCC',
-                'x': 0.3,
-                'y': 1,
-                'isSource': true,
-                'property': ['5V'],
-                'type': 'power'
-            }, {
-                'id': 1,
-                'name': 'SIG',
-                'x': 0.5,
-                'y': 1,
-                'isSource': true,
-                'property': ['din'],
-                'type': 'digital'
-            }, {
-                'id': 2,
-                'name': 'GND',
-                'x': 0.7,
-                'y': 1,
-                'isSource': true,
-                'property': ['GND'],
-                'type': 'ground'
-            }]
-        },
+        // "ir-obstacle-avoidance": {
+        //     'id': 30,
+        //     'name': 'IR Obstacle Avoidance',
+        //     'blocks': ['<block type="sensorkit_irobstacle_get_value"><value name="pin"></value></block>'],
+        //     'img': 'ir-obstacle-avoidance.png',
+        //     'simulator': {
+        //         "type": "digitalInput",
+        //         "pin": 'SIG',
+        //         "mode": 'click',
+        //         "initValue": 0
+        //     },
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['5V'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'SIG',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'digital'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'GND',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }]
+        // },
         // "barometer": {
         //     'id': 31,
         //     'name': 'Barometer',
@@ -1271,17 +1374,63 @@ var SensorKit = {
         //         'type': 'ground'
         //     }]
         // },
-        "tracking-sensor": {
+        // "tracking-sensor": {
+        //     'id': 33,
+        //     'name': 'Tracking Sensor',
+        //     'blocks': ['<block type="sensorkit_tracking_get_value"><value name="pin"></value></block>'],
+        //     'img': 'tracking-sensor.png',
+        //     'simulator': {
+        //         "type": "digitalInput",
+        //         "pin": 'SIG',
+        //         "mode": 'click',
+        //         "initValue": 0
+        //     },
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['5V'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'SIG',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'digital'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'GND',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }]
+        // },
+
+
+
+        // sensor 2
+        "servo": {
             'id': 33,
-            'name': 'Tracking Sensor',
-            'blocks': ['<block type="sensorkit_tracking_get_value"><value name="pin"></value></block>'],
-            'img': 'tracking-sensor.png',
-            'simulator': {
-                "type": "digitalInput",
-                "pin": 'SIG',
-                "mode": 'click',
-                "initValue": 0
-            },
+            'name': 'Servo',
+            'blocks': [
+                '<block type="sensorkit_servo_set_value"> ' +
+                '<value name="pin"> ' +
+                '<shadow type="raspberrypi_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '<value name="angle"> ' +
+                '   <shadow type="math_number"> ' +
+                '   </shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
+            'img': 'servo-sensor.png',
             'pins': [{
                 'id': 0,
                 'name': 'VCC',
@@ -1307,6 +1456,178 @@ var SensorKit = {
                 'property': ['GND'],
                 'type': 'ground'
             }]
-        }
+        },
+
+
+        "moisture-sensor": {
+            'id': 34,
+            'name': 'Moisture Sensor',
+            'blocks': ['<block type="sensorkit_moisture_sensor_get_value"> ' +
+                '<value name="pin"> ' +
+                '<shadow type="sensorkit_analog_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block>'
+            ],
+            'img': 'moisture-sensor.png',
+            'pins': [{
+                'id': 0,
+                'name': 'VCC',
+                'x': 0.3,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 1,
+                'name': 'SIG',
+                'x': 0.5,
+                'y': 1,
+                'isSource': true,
+                'property': ['din'],
+                'type': 'digital'
+            }, {
+                'id': 2,
+                'name': 'GND',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }]
+        },
+
+        // "sensorkit-joy-stick": {
+        //     'id': 34,
+        //     'name': 'Joy stick',
+        //     'blocks': [
+        //         '<block type="sensorkit_moisture_sensor_get_value"> ' +
+        //         '<value name="pin"> ' +
+        //         '</value> ' +
+        //         '</block> ',
+
+        //         '<block type="sensorkit_joy_stick_get_status"> ' +
+        //         '<value name="X"> ' +
+        //         '</value> ' +
+        //         '<block type="sensorkit_joy_stick_get_status"> ' +
+        //         '<value name="X"> ' +
+        //         '</value> ' +
+        //         '<value name="Y"> ' +
+        //         '</value> ' +
+        //         '<value name="BT"> ' +
+        //         '</value> ' +
+        //         '</block> '
+        //     ],
+        //     'img': '',
+        //     'pins': [{
+        //         'id': 0,
+        //         'name': 'VCC',
+        //         'x': 0.3,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['5V'],
+        //         'type': 'power'
+        //     }, {
+        //         'id': 1,
+        //         'name': 'GND',
+        //         'x': 0.5,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['GND'],
+        //         'type': 'ground'
+        //     }, {
+        //         'id': 2,
+        //         'name': 'X',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'analog'
+        //     }, {
+        //         'id': 3,
+        //         'name': 'Y',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'analog'
+        //     }, {
+        //         'id': 4,
+        //         'name': 'BT',
+        //         'x': 0.7,
+        //         'y': 1,
+        //         'isSource': true,
+        //         'property': ['din'],
+        //         'type': 'analog'
+        //     }]
+        // },
+
+
+
+
+        "ADXL345": {
+            'id': 34,
+            'name': 'ADXL345',
+            'blocks': ['<block type="sensorkit_adxl345_get_value"> ' +
+                '<value name="SIG">' +
+                '<shadow type="sensorkit_digital_pin"> ' +
+                '</shadow> ' +
+                '</value> ' +
+                '</block> '
+            ],
+            'img': 'ADXL345.png',
+            'pins': [{
+                'id': 0,
+                'name': 'GND',
+                'x': 0.3,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }, {
+                'id': 1,
+                'name': '5V',
+                'x': 0.5,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 2,
+                'name': 'SCL',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['SCL'],
+                'type': 'SCL'
+            }, {
+                'id': 3,
+                'name': 'SDA',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['SDA'],
+                'type': 'SDA'
+            }, {
+                'id': 4,
+                'name': 'CS',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['5V'],
+                'type': 'power'
+            }, {
+                'id': 5,
+                'name': 'SDO',
+                'x': 0.7,
+                'y': 1,
+                'isSource': true,
+                'property': ['GND'],
+                'type': 'ground'
+            }]
+        },
+
+
+
     }
 };
