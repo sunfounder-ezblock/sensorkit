@@ -110,7 +110,7 @@ Blockly.Blocks['sensorkit_led_module_set_value'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(Blockly.Constants.SensorKit.RGB);
-        this.setTooltip(Blockly.Msg.SENSORKIT_LED_MODULE_SET_ANGLE_TOOLTIP);
+        this.setTooltip(Blockly.Msg.SENSORKIT_LED_MODULE_SET_VALUE_TOOLTIP);
         this.setHelpUrl('');
     }
 };
