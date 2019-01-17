@@ -64,7 +64,7 @@ var SensorKit = {
             ],
             'img': 'rgb-led.png',
             "simulator": {
-                "type": "Communicate",
+                "type": "ModuleRGB",
                 "R": 'R',
                 "G": "G",
                 "B": "B",
@@ -323,8 +323,9 @@ var SensorKit = {
             'blocks': ['<block type="sensorkit_potentiometer_get_value"> </block> '],
             'img': 'potentiometer.png',
             'simulator': {
-                "type": "AnalogInput",
+                "type": "ValueInput",
                 "pin": "SIG",
+                "mode": "slider",
                 "initValue": 0
             },
             'pins': [{
@@ -359,8 +360,9 @@ var SensorKit = {
             'blocks': ['<block type="sensorkit_soundsensor_get_value"> </block> '],
             'img': 'sound-sensor.png',
             'simulator': {
-                "type": "AnalogInput",
+                "type": "ValueInput",
                 "pin": "SIG",
+                "mode": "slider",
                 "initValue": 0
             },
             'pins': [{
@@ -395,8 +397,9 @@ var SensorKit = {
             'blocks': ['<block type="sensorkit_photoresistor_get_value"></block> '],
             'img': 'photoresistor.png',
             'simulator': {
-                "type": "AnalogInput",
+                "type": "ValueInput",
                 "pin": "SIG",
+                "mode": "slider",
                 "initValue": 0
             },
             'pins': {
