@@ -1,40 +1,13 @@
 <category name="%{BKY_CATSENSORKIT}" colour='#58ce6a'>
-  <block type="sensorkit_active_buzzer_set_value">
-    <value name="pin">
-      <shadow type="sensorkit_pwm_pin">
-      </shadow>
-    </value>
-    <value name="value">
-      <shadow type="logic_boolean">
-        <field name="NUM">0</field>
-      </shadow>
-    </value>
-  </block>
 
-  <block type="sensorkit_passive_buzzer_set_value">
-    <value name="pin">
-      <shadow type="sensorkit_pwm_pin">
-      </shadow>
-    </value>
+  <block type="sensorkit_buzzer_set_value">
     <value name="note">
-      <shadow type="sensorkit_note">
+      <shadow type="music_notes">
       </shadow>
     </value>
   </block>
-
+  
   <block type="sensorkit_rgb_set_value">
-    <value name="R">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
-    <value name="G">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
-    <value name="B">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
     <value name="color">
       <shadow type="colour_picker">
         <field name="COLOUR">#ff0000</field>
@@ -43,188 +16,45 @@
   </block>
 
   <block type="sensorkit_led_module_set_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
 
     <value name="value">
-      <shadow type="logic_boolean">
+      <shadow type="math_number">
       </shadow>
     </value>
   </block>
 
-  <block type="sensorkit_autoflash_set_value">
-    <value name="pin">
-    </value>
-    <value name="value">
-      <shadow type="logic_boolean">
-        <field name="NUM">0</field>
-      </shadow>
-    </value>
-  </block>
-
-  <block type="sensorkit_relay_set_value">
-    <value name="SIG">
-    </value>
-    <value name="value">
-      <shadow type="logic_boolean">
-        <field name="NUM">0</field>
-      </shadow>
-    </value>
-  </block>
-
-  <block type="sensorkit_laser_set_value">
-    <value name="SIG">
-    </value>
-    <value name="value">
-      <shadow type="logic_boolean">
-        <field name="NUM">0</field>
-      </shadow>
-    </value>
-  </block>
 
   <block type="sensorkit_button_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
   <block type="sensorkit_potentiometer_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
   </block>
 
-  <block type="sensorkit_sound_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
+  <block type="sensorkit_soundsensor_get_value">
   </block>
 
   <block type="sensorkit_ultrasonic_get_value">
-    <value name="Trig">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
-    <value name="Echo">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
   <block type="sensorkit_tiltswitch_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
   
   <block type="sensorkit_vibrationswitch_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
-  <block type="sensorkit_reedswitch_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_photointerrupter_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_raindetection_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_temperature_get_value">
-    <value name="pin">
-    </value>
-  </block>
 
   <block type="sensorkit_photoresistor_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
   </block>
 
-  <block type="sensorkit_flame_get_value">
-    <value name="pin_DO">
-    </value>
-    <value name="pin_AO">
-    </value>
-  </block>
-
-  <block type="sensorkit_gassensor_get_value">
-    <value name="pin_DO">
-    </value>
-    <value name="pin_AO">
-    </value>
-  </block>
 
   <block type="sensorkit_touchswitch_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
   <block type="sensorkit_ds18b20_get_value">
   </block>
 
-  <block type="sensorkit_tracking_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_analoghallswitch_get_value">
-    <value name="pin_DO">
-    </value>
-    <value name="pin_AO">
-    </value>
-  </block>
-
-  <block type="sensorkit_hallswitch_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_analogtemperature_get_value">
-    <value name="pin_DO">
-    </value>
-    <value name="pin_AO">
-    </value>
-  </block>
-
-  <block type="sensorkit_thermistor_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-  <block type="sensorkit_dht11_get_value">
-    <value name="pin">
-    </value>
-  </block>
-
-
-  
-<!-- sensor 2 -->
-  
-  <block type="sensorkit_servo_set_value">
-    <value name="pin">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
+  <block type="sensorkit_servo_set_angle">
     <value name="angle">
       <shadow type="math_number">
       </shadow>
@@ -232,42 +62,18 @@
   </block>
 
   <block type="sensorkit_moisture_sensor_get_value">
-    <value name="pin">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
   </block>
 
   
-  <block type="sensorkit_joy_stick_get_value">
-    <value name="pin">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
+  <block type="sensorkit_joystick_get_value">
   </block>
 
   
-  <block type="sensorkit_joy_stick_get_status">
-    <value name="X">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
-    <value name="Y">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
-    <value name="BT">
-      <shadow type="sensorkit_analog_pin">
-      </shadow>
-    </value>
+  <block type="sensorkit_joystick_get_status">
   </block>
 
 
   <block type="sensorkit_adxl345_get_value">
-    <value name="SIG">
-      <shadow type="sensorkit_digital_pin">
-      </shadow>
-    </value>
   </block>
 
 </category>
