@@ -1,4 +1,4 @@
-Local['en'].MSG.catS['en']sorkit = "S['en']sor Kit";
+Local['en'].MSG.catSensorkit = "Sensor Kit";
 
 Local['en'].SENSORKIT_LED_MODULE_SET_VALUE_TITLE1 = "LED module set ";
 Local['en'].SENSORKIT_LED_MODULE_SET_VALUE_TITLE2 = "status";
