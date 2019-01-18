@@ -37,7 +37,7 @@ var SensorKit = {
                     'x': 0.5,
                     'y': 1,
                     'isSource': true,
-                    'property': ['5V'],
+                    'property': ['3V3'],
                     'type': 'power',
                 },
                 "GND": {
@@ -137,7 +137,7 @@ var SensorKit = {
                     'x': 0.5,
                     'y': 1,
                     'isSource': true,
-                    'property': ['5V'],
+                    'property': ['3V3'],
                     'type': 'power'
                 },
                 'GND': {
@@ -178,7 +178,7 @@ var SensorKit = {
                     'x': 0.5,
                     'y': 1,
                     'isSource': true,
-                    'property': ['5V'],
+                    'property': ['3V3'],
                     'type': 'power',
 
                 },
@@ -254,7 +254,7 @@ var SensorKit = {
                 'x': 0.5,
                 'y': 1,
                 'isSource': true,
-                'property': ['5V'],
+                'property': ['3V3'],
                 'type': 'power'
             }, {
                 'id': 2,
@@ -458,7 +458,7 @@ var SensorKit = {
                 'x': 0.5,
                 'y': 1,
                 'isSource': true,
-                'property': ['5V'],
+                'property': ['3V3'],
                 'type': 'power'
             }, {
                 'id': 2,
@@ -497,7 +497,7 @@ var SensorKit = {
                 'x': 0.6,
                 'y': 1,
                 'isSource': true,
-                'property': ['5V'],
+                'property': ['3V3'],
                 'type': 'power'
             }, {
                 'id': 3,
@@ -597,7 +597,7 @@ var SensorKit = {
                 'x': 0.5,
                 'y': 1,
                 'isSource': true,
-                'property': ['5V'],
+                'property': ['3V3'],
                 'type': 'power'
             }, {
                 'id': 2,
@@ -624,11 +624,11 @@ var SensorKit = {
                 'type': 'ground'
             }, {
                 'id': 1,
-                'name': '5V',
+                'name': '3V3',
                 'x': 0.3,
                 'y': 1,
                 'isSource': true,
-                'property': ['5V'],
+                'property': ['3V3'],
                 'type': 'power'
             }, {
                 'id': 2,
