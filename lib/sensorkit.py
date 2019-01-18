@@ -10,12 +10,10 @@ MAX_PW = 2500
 DS18B20 = ''
 
 def LEDModule_set_value(pin, value):
-	
 	pin = Pin(pin)
 	pin.value(value)
 
 def RGBLED_set_value(Rpin, Gpin, Bpin, color, common=1):
-	
 	Rpin = PWM(Rpin)
 	Gpin = PWM(Gpin)
 	Bpin = PWM(Bpin)
@@ -40,24 +38,18 @@ def RGBLED_set_value(Rpin, Gpin, Bpin, color, common=1):
 def Button_get_value(pin):
 	pin = Pin(pin)
 	value = pin.value()
+	if value == 1:
+		value = 0
+	else:
+		value = 1
 	return value
 
-def PassiveBuzzer_set_value(pin, note):
-	NOTE = [ #262-1976
-		'LC', 'LC#', 'LD', 'LD#', 'LE', 'LF', 'LF#', 'LG', 'LG#', 'LA', 'LA#', 'LB',
-		'MC', 'MC#', 'MD', 'MD#', 'ME', 'MF', 'MF#', 'MG', 'MG#', 'MA', 'MA#', 'MB',
-		'HC', 'HC#', 'HD', 'HD#', 'HE', 'HF', 'HF#', 'HG', 'HG#', 'HA', 'HA#', 'HB',
-	]
-	n = NOTE.index(note)
-	f = math.pow(2, n/12)*262
-	# print (f)
-	_min = PERIOD * 10/1023
-	value = int((f - 262) / (1976-262) * (PERIOD - _min) + _min)
-
-	p_in = PWM(pin)
-	p_in.period(PERIOD)
-	p_in.prescaler(PRESCALER)
-	p_in.pulse_width(value)
+def Buzzer_play(pin, note, beat):
+	pwm = PWM(pin)
+	pwm.freq(note)
+	pwm.pulse_width_percentage(50)
+	delay(beat)
+	pwm.pulse_width_percentage(0)
 
 def TiltSwitch_get_value(pin):
 	pin = Pin(pin)
@@ -83,7 +75,6 @@ def UltrasonicSensor_get_value( trig, echo, timeout=0.02):
 	time.sleep(0.00001)
 	trig.low()
 	pulse_end = 0
-
 	timeout_start = time.time()
 	while echo.value()==0:
 		pulse_start = time.time()
@@ -93,11 +84,8 @@ def UltrasonicSensor_get_value( trig, echo, timeout=0.02):
 		pulse_end = time.time()
 		if pulse_end - timeout_start > timeout:
 			return -1
-
 	during = pulse_end - pulse_start
 	return during * 340 / 2 * 100
-
-
 
 def GasSensor_get_value(pin):
 	adc = ADC(pin)
@@ -112,7 +100,6 @@ def SoundSensor_get_value(pin):
 		value_list.append(value)
 	value = sum(value_list)/50.0
 	return value
-
 
 def Photoresistor_get_value(pin):
 	adc = ADC(pin)
@@ -171,10 +158,10 @@ def DS18B20_get_value(unit=1):
 		temperature = 32 + temperature*1.8
 	return temperature
 
-def ADXL345_get_value(busnum=-1, debug=False):  # 待定
+def ADXL345_get_value(busnum=-1, debug=False):  
 	i2c = I2C()
-	ADXL345_ADDRESS          = 0x53
-	ADXL345_REG_DEVID        = 0x00 # Device ID
+	ADXL345_ADDRESS          = 0x53 
+	ADXL345_REG_DEVID        = 0x14 # Device ID
 	ADXL345_REG_DATAX0       = 0x32 # X-axis data 0 (6 bytes for X/Y/Z)
 	ADXL345_REG_POWER_CTL    = 0x2D # Power-saving features control
 
@@ -189,14 +176,14 @@ def ADXL345_get_value(busnum=-1, debug=False):  # 待定
 	# 	if g > 32767: 
 	# 		g -= 65535
 	# 	value.append(g)
-	# return value
+	# return value 
 
-
-	if i2c.recv(ADXL345_ADDRESS, ADXL345_REG_DEVID) == 0xE5:
-			i2c.send(ADXL345_REG_POWER_CTL, 0x08)
-
-	raw = i2c.mem_read(6, ADXL345_ADDRESS, ADXL345_REG_DATAX0 )
-
+	result = i2c.recv(ADXL345_ADDRESS, ADXL345_REG_DEVID)
+	send1 = ADXL345_REG_POWER_CTL<< 8
+	send = (0x08<< 8) + ADXL345_REG_POWER_CTL
+	if result:
+		i2c.send( send, ADXL345_ADDRESS)
+	raw = i2c.mem_read(6, ADXL345_ADDRESS, ADXL345_REG_DATAX0)
 	value = []
 	for i in range(0, 6, 2):
 		g = raw[i] | (raw[i+1] << 8)
@@ -204,7 +191,6 @@ def ADXL345_get_value(busnum=-1, debug=False):  # 待定
 			g-=32767
 		value.append(g)
 	return value
-
 
 def map(x, in_min, in_max, out_min, out_max):
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
@@ -227,22 +213,9 @@ def TouchSwitch_get_value(pin):
 
 def test():
 	while True:
-		# value  = RGBLED_set_value("D0", "D1", "D2")
-		# print(value) 
-		# time.sleep(1)
+		value  = ADXL345_get_value()
+		print(value) 
+		time.sleep(1)
 
-		# LEDModule_set_value(17, 1)
-		# time.sleep(1)
-		# LEDModule_set_value(17, 0)
-		# time.sleep(1)
-
-		RGBLED_set_value("P0", "P1", "P2", "#00ff00")
-
-		 
-		
-		# value  = TiltSwitch_get_value(17)
-		# print(value) 
-		# time.sleep(1)
- 
 if __name__ == "__main__":
-	# test() 
+	test() 
