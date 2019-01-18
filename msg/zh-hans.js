@@ -12,10 +12,7 @@ Local['zh-hans'].SENSORKIT_PIN_COLOUR_TOOLTIP = "颜色";
 
 Local['zh-hans'].SENSORKIT_PIN_SWITCH_TOOLTIP = "开或关";
 
-
 Local['zh-hans'].SENSORKIT_PIN_DOUBLE_LED_TOOLTIP = "双色LED";
-
-
 
 Local['zh-hans'].SENSORKIT_LED_SET_VALUE_TITLE1 = "设置LED";
 Local['zh-hans'].SENSORKIT_LED_SET_VALUE_TITLE2 = "为";
