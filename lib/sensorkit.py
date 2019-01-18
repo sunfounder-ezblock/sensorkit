@@ -38,6 +38,10 @@ def RGBLED_set_value(Rpin, Gpin, Bpin, color, common=1):
 def Button_get_value(pin):
 	pin = Pin(pin)
 	value = pin.value()
+	if value == 1:
+		value = 0
+	else:
+		value = 1
 	return value
 
 def Buzzer_play(pin, note, beat):
